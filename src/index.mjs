@@ -38,7 +38,7 @@ export function getRenameFilepath(filepath){
     // basename(sInput,extname(sInput))
     const extName = extname(filepath)
     const baseName = basename(filepath,extName)
-    if(!isCamelOrPascalCase(extractFileName(baseName))) return "";
+    if(!isCamelOrPascalCase(baseName)) return "";
     //extractFileName can be optimized... since it's being called twice...
     return snakeCase(baseName) + extName;
 
