@@ -72,10 +72,12 @@ function writeToFile(fileName,data,space=2){
   );
 }
 import camelCase from 'camelcase';
+import {snakeCase} from 'snake-case';
 import {isCamelOrPascalCase} from "../src/index.mjs";
 
 /**
  * https://yarnpkg.com/package/camelcase
+ * https://yarnpkg.com/package/snake-case
  */
 describe('index.test.mjs', function(){
   it('detect camelcase initial', function(){
@@ -111,8 +113,15 @@ describe('index.test.mjs', function(){
     out = isCamelOrPascalCase(input);
     assert.strictEqual(out,expected);
   });
-  //maybe add a batch version
+  //maybe add a batch version - need another package apparently
   it('convert camelcase to snakecase', function(){
-    //assert.strictEqual(1,1);//require assert
+    //assert.strictEqual(1,1);//require assertc
+    const expected_snake = 'foo_bar'
+    const expected_cc = 'fooBar'
+    let out;
+    out = camelCase(expected_snake)
+    assert.strictEqual(out,expected_cc)
+    out = snakeCase(out);
+    assert.strictEqual(out,expected_snake)
   });
 });

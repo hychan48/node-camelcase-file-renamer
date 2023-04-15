@@ -13,6 +13,7 @@
     "mocha": "^10.2.0"
   },
   "dependencies": {
-    "camelcase": "^7.0.1"
+    "camelcase": "^7.0.1",
+    "snake-case": "^3.0.4"
   }
 }
