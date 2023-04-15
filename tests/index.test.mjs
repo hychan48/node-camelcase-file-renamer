@@ -73,7 +73,7 @@ function writeToFile(fileName,data,space=2){
 }
 import camelCase from 'camelcase';
 import {snakeCase} from 'snake-case';
-import {isCamelOrPascalCase} from "../src/index.mjs";
+import {extractFileName, getRenameFilepath, isCamelOrPascalCase} from "../src/index.mjs";
 
 /**
  * https://yarnpkg.com/package/camelcase
@@ -123,5 +123,33 @@ describe('index.test.mjs', function(){
     assert.strictEqual(out,expected_cc)
     out = snakeCase(out);
     assert.strictEqual(out,expected_snake)
+  });
+  it('extractFileName',function(){
+    let out
+    const input = 'someThing.md'
+    const expected = 'someThing'
+    out = extractFileName(input);
+    assert.strictEqual(out,expected);
+  });
+  it('extractFileName folder',function(){
+    let out
+    const input = 'someThing'
+    const expected = 'someThing'
+    out = extractFileName(input);
+    assert.strictEqual(out,expected);
+  });
+  it('getRenameFilepath - cc',function(){
+    let out
+    const input = 'someThing.md'
+    const expected = 'some_thing.md'
+    out = getRenameFilepath(input);
+    assert.strictEqual(out,expected);
+  });
+  it('getRenameFilepath - other',function(){
+    let out
+    const input = 'some-thing.md'
+    const expected = ''
+    out = getRenameFilepath(input);
+    assert.strictEqual(out,expected);
   });
 });
